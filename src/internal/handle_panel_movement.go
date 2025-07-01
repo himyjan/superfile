@@ -15,10 +15,11 @@ import (
 // Change file panel mode (select mode or browser mode)
 func (m *model) changeFilePanelMode() {
 	panel := &m.fileModel.filePanels[m.filePanelFocusIndex]
-	if panel.panelMode == selectMode {
+	switch panel.panelMode {
+	case selectMode:
 		panel.selected = panel.selected[:0]
 		panel.panelMode = browserMode
-	} else if panel.panelMode == browserMode {
+	case browserMode:
 		panel.panelMode = selectMode
 	}
 }
@@ -101,9 +102,10 @@ func (m *model) enterPanel() {
 		}
 
 		openCommand := "xdg-open"
-		if runtime.GOOS == utils.OsDarwin {
+		switch runtime.GOOS {
+		case utils.OsDarwin:
 			openCommand = "open"
-		} else if runtime.GOOS == utils.OsWindows {
+		case utils.OsWindows:
 			dllpath := filepath.Join(os.Getenv("SYSTEMROOT"), "System32", "rundll32.exe")
 			dllfile := "url.dll,FileProtocolHandler"
 
@@ -168,7 +170,7 @@ func (panel *filePanel) singleItemSelect() {
 			// This is inefficient. Once you select 1000 items,
 			// each select / deselect operation can take 1000 operations
 			// It can be easily made constant time.
-			// Todo : (performance)convert panel.selected to a set (map[string]struct{})
+			// TODO : (performance)convert panel.selected to a set (map[string]struct{})
 			panel.selected = removeElementByValue(panel.selected, elementLocation)
 		} else {
 			panel.selected = append(panel.selected, elementLocation)
@@ -193,7 +195,7 @@ func (m *model) toggleFooterController() {
 	if err != nil {
 		slog.Error("Error while updating toggleFooter data", "error", err)
 	}
-	// Todo : Revisit this. Is this really need here, is this correct ?
+	// TODO : Revisit this. Is this really need here, is this correct ?
 	m.setHeightValues(m.fullHeight)
 }
 
