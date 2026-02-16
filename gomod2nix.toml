@@ -82,6 +82,9 @@ schema = 3
   [mod."github.com/fatih/color"]
     version = "v1.18.0"
     hash = "sha256-pP5y72FSbi4j/BjyVq/XbAOFjzNjMxZt2R/lFFxGWvY="
+  [mod."github.com/fvbommel/sortorder"]
+    version = "v1.1.0"
+    hash = "sha256-553Rg/amloO6nv67p0ARsKas9QNnTQucpi08vNLtjQU="
   [mod."github.com/go-ole/go-ole"]
     version = "v1.2.6"
     hash = "sha256-+oxitLeJxYF19Z6g+6CgmCHJ1Y5D8raMi2Cb3M6nXCs="
